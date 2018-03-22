@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import SearchInput from './SearchInput';
+import ResultsList from './ResultsList';
 
 class App extends Component {
   query = '123'
@@ -16,7 +18,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Giphy search</h1>
+          <SearchInput />
         </header>
+        <ResultsList />
       </div>
     );
   }
