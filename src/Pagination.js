@@ -7,12 +7,14 @@ export default class Pagination extends Component {
     this.handleNextClick = this.handleNextClick.bind(this);
   }
   handlePrevClick() {
-    const newOffset = this.props.pagination.offset - this.props.resultsPerPage;
-    this.props.apiCall(this.props.query, newOffset);
+    const { pagination, resultsPerPage, query, apiCall } = this.props;
+    const newOffset = pagination.offset - resultsPerPage;
+    apiCall(query, newOffset);
   }
   handleNextClick() {
-    const newOffset = this.props.pagination.offset + this.props.resultsPerPage;
-    this.props.apiCall(this.props.query, newOffset);
+    const { pagination, resultsPerPage, query, apiCall } = this.props;
+    const newOffset = pagination.offset + resultsPerPage;
+    apiCall(query, newOffset);
   }
   render() {
     const { pagination, resultsPerPage } = this.props;
