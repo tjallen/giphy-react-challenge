@@ -3,6 +3,12 @@ import './App.css';
 import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
 import Modal from './Modal';
+import styled from 'styled-components';
+
+const AppWrapper = styled.div`
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+`;
 
 class App extends Component {
   constructor() {
@@ -64,7 +70,7 @@ class App extends Component {
   render() {
     const { results, query, showingModal, modalGif } = this.state;
     return (
-      <div className="App">
+      <AppWrapper>
         <header className="App-header">
           <h1 className="App-title">Giphy search</h1>
           <SearchInput apiCall={this.apiCall} />
@@ -81,7 +87,7 @@ class App extends Component {
           query={query}
           onGifClick={this.handleShowModal}
         />
-      </div>
+      </AppWrapper>
     );
   }
 }

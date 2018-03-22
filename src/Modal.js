@@ -40,7 +40,7 @@ const Modal = ({ isVisible, modalGif, onModalCloseClick }) => {
   if (!isVisible) return null;
   const { title, images, import_dateTime } = modalGif;
   return (
-    <ModalWrapper>
+    <ModalWrapper onClick={onModalCloseClick}>
       <ModalInner>
         <a onClick={onModalCloseClick}><CloseButton>X</CloseButton></a>
       <h3>{title}</h3>

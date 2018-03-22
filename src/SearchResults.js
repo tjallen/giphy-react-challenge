@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import Gif from './Gif';
 import Pagination from './Pagination';
+import styled from 'styled-components';
+
+const ResultsList = styled('ul')`
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 class SearchResults extends Component {
   render() {
@@ -8,7 +17,7 @@ class SearchResults extends Component {
     if (results.length === 0) return null;
     return (
       <div>
-        <ul>
+        <ResultsList>
           {results.map(res =>
             <Gif
               id={res.id}
@@ -18,7 +27,7 @@ class SearchResults extends Component {
               title={res.title}
             />
           )}
-        </ul>
+        </ResultsList>
         <Pagination
           pagination={pagination}
           resultsPerPage={10}
