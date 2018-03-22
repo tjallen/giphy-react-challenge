@@ -18,6 +18,9 @@ class App extends Component {
     this.apiCall = this.apiCall.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
   }
+  componentDidMount() {
+    this.apiCall('maru')
+  }
   apiCall(query, offset = 0, limit = 10) {
     console.log('api call', query, offset, limit)
     if (!query) {
