@@ -16,6 +16,7 @@ class App extends Component {
     this.apiCall = this.apiCall.bind(this);
   }
   apiCall(query, offset = 0, limit = 10) {
+    console.log('api call', query, offset, limit)
     if (!query) {
       this.clearResults();
       return;
@@ -26,6 +27,7 @@ class App extends Component {
       .then(res => {
         this.setState({
           results: res,
+          query,
         })
       });
   }
@@ -39,6 +41,7 @@ class App extends Component {
     });
   }
   render() {
+    const { results, query } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -47,8 +50,9 @@ class App extends Component {
         </header>
         <SearchResults
           apiCall={this.apiCall}
-          results={this.state.results.data}
-          pagination={this.state.results.pagination}
+          results={results.data}
+          pagination={results.pagination}
+          query={query}
         />
       </div>
     );

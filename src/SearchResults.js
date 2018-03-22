@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 
 class SearchResults extends Component {
   render() {
-    const { results, pagination } = this.props;
+    const { results, pagination, apiCall, query } = this.props;
     if (results.length === 0) return null;
     return (
       <div>
@@ -17,7 +17,12 @@ class SearchResults extends Component {
             />
           )}
         </ul>
-        <Pagination pagination={pagination} />
+        <Pagination
+          pagination={pagination}
+          resultsPerPage={10}
+          apiCall={apiCall}
+          query={query}
+        />
       </div>
 
     )
