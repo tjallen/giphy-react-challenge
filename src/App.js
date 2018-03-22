@@ -13,17 +13,14 @@ class App extends Component {
         pagination: null,
       }
     };
-    this.handleApiCallSuccess = this.handleApiCallSuccess.bind(this);
     this.apiCall = this.apiCall.bind(this);
   }
-  apiCall(query) {
+  apiCall(query, offset = 0, limit = 10) {
     if (!query) {
       this.clearResults();
       return;
     }
-    const giphyKey = 'uy4jAUKFBMvmVsq0YwWUBdCwGtB6X5kX';
-    const limit = 10;
-    const offset = 0;
+    const giphyKey = 'uy4jAUKFBMvmVsq0YwWUBdCwGtB6X5kX'; // on environment variable in production
     fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${giphyKey}&limit=${limit}&offset=${offset}`)
       .then(res => res.json())
       .then(res => {
@@ -31,15 +28,6 @@ class App extends Component {
           results: res,
         })
       });
-  }
-  handleApiCallSuccess(res) {
-    this.setState({
-      results: {
-        data: res.data,
-        meta: res.meta,
-        pagination: res.pagination,
-      }
-    });
   }
   clearResults() {
     this.setState({
@@ -58,6 +46,7 @@ class App extends Component {
           <SearchInput apiCall={this.apiCall} />
         </header>
         <SearchResults
+          apiCall={this.apiCall}
           results={this.state.results.data}
           pagination={this.state.results.pagination}
         />
