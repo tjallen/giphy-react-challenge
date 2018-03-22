@@ -16,6 +16,7 @@ class App extends Component {
       showingModal: false,
     };
     this.apiCall = this.apiCall.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
   }
   apiCall(query, offset = 0, limit = 10) {
     console.log('api call', query, offset, limit)
@@ -42,24 +43,29 @@ class App extends Component {
       }
     });
   }
-  handleShowGifModal(id) {
-    console.log('show modal for', id)
+  handleShowModal(id) {
+    const modalGif = this.state.results.data.find(res => res.id === id);
+    console.log('show modal for', id, modalGif);
+    this.setState({
+      showingModal: true,
+      modalGif,
+    });
   }
   render() {
-    const { results, query, showingModal } = this.state;
+    const { results, query, showingModal, modalGif } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Giphy search</h1>
           <SearchInput apiCall={this.apiCall} />
         </header>
-        <Modal isVisible={showingModal} />
+        <Modal isVisible={showingModal} modalGif={modalGif} />
         <SearchResults
           apiCall={this.apiCall}
           results={results.data}
           pagination={results.pagination}
           query={query}
-          onGifClick={this.handleShowGifModal}
+          onGifClick={this.handleShowModal}
         />
       </div>
     );

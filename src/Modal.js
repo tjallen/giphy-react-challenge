@@ -1,16 +1,21 @@
 import React from 'react';
 
-const Modal = ({ showingModal, title, author, uploaded, original }) => {
-  if (!showingModal) return null;
+const Modal = ({ isVisible, modalGif }) => {
+  if (!isVisible) return null;
+  const { title, images, import_dateTime } = modalGif;
   return (
     <div>
-      Modal
-      {title}
-      {author}
-      {uploaded}
-      {original}
+      <h3>{title}</h3>
+      <img src={images.original.url} alt={title} />
+      <span>{import_dateTime}</span>
     </div>
   );
+};
+
+Modal.defaultProps = {
+  title: 'untitled',
+  author: 'unknown',
+  uploaded: 'unknown date',
 }
 
 export default Modal;
