@@ -4,12 +4,12 @@ import SearchInput from './SearchInput';
 import ResultsList from './ResultsList';
 
 class App extends Component {
-  query = '123'
-  giphyKey = 'uy4jAUKFBMvmVsq0YwWUBdCwGtB6X5kX'
-  limit = 10
-  offset = 0
-  componentDidMount() {
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${this.query}&api_key=${this.giphyKey}&limit=${this.limit}&offset=${this.offset}`)
+  apiCall(query) {
+    console.log('API', query)
+    const giphyKey = 'uy4jAUKFBMvmVsq0YwWUBdCwGtB6X5kX';
+    const limit = 10;
+    const offset = 0;
+    return fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${giphyKey}&limit=${limit}&offset=${offset}`)
       .then(res => res.json())
       .then(res => console.log(res))
   }
@@ -18,7 +18,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Giphy search</h1>
-          <SearchInput />
+          <SearchInput apiCall={this.apiCall} />
         </header>
         <ResultsList />
       </div>
