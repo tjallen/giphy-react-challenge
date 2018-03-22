@@ -17,6 +17,7 @@ class App extends Component {
     };
     this.apiCall = this.apiCall.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
+    this.handleHideModal = this.handleHideModal.bind(this);
   }
   componentDidMount() {
     this.apiCall('maru')
@@ -54,6 +55,12 @@ class App extends Component {
       modalGif,
     });
   }
+  handleHideModal() {
+    this.setState({
+      showingModal: false,
+      modalGif: null,
+    });
+  }
   render() {
     const { results, query, showingModal, modalGif } = this.state;
     return (
@@ -62,7 +69,11 @@ class App extends Component {
           <h1 className="App-title">Giphy search</h1>
           <SearchInput apiCall={this.apiCall} />
         </header>
-        <Modal isVisible={showingModal} modalGif={modalGif} />
+        <Modal
+          isVisible={showingModal}
+          modalGif={modalGif} 
+          onModalCloseClick={this.handleHideModal}
+        />
         <SearchResults
           apiCall={this.apiCall}
           results={results.data}
