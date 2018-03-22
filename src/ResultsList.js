@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 class ResultsList extends Component {
   render() {
     return (
-      <div>RL</div>
+      <ul>
+        {this.props.results.map(res =>
+          <p key={res.id}>{res.title}</p>
+        )}
+      </ul>
     )
   }
 }
