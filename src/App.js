@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchInput from './SearchInput';
-import ResultsList from './ResultsList';
+import SearchResults from './SearchResults';
 
 class App extends Component {
   constructor() {
@@ -57,7 +57,10 @@ class App extends Component {
           <h1 className="App-title">Giphy search</h1>
           <SearchInput apiCall={this.apiCall} />
         </header>
-        <ResultsList results={this.state.results.data} />
+        <SearchResults
+          results={this.state.results.data}
+          pagination={this.state.results.pagination}
+        />
       </div>
     );
   }
