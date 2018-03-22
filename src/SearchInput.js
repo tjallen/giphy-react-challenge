@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import debounce from 'lodash.debounce';
 
 class SearchInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: '',
-    }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.debouncedSubmit = debounce(this.handleSubmit, 450);
   }
   handleChange(e) {
-    this.setState({ query: e.target.value });
+    const query = e.target.value;
+    if (!query) return; // TODO clear results
+    this.debouncedSubmit(query);
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.apiCall(this.state.query);
+  handleSubmit(query) {
+    this.props.apiCall(query);
   }
   render() {
     return (
