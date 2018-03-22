@@ -17,7 +17,10 @@ class App extends Component {
     this.apiCall = this.apiCall.bind(this);
   }
   apiCall(query) {
-    console.log('API', query)
+    if (!query) {
+      this.clearResults();
+      return;
+    }
     const giphyKey = 'uy4jAUKFBMvmVsq0YwWUBdCwGtB6X5kX';
     const limit = 10;
     const offset = 0;
@@ -35,6 +38,15 @@ class App extends Component {
         data: res.data,
         meta: res.meta,
         pagination: res.pagination,
+      }
+    });
+  }
+  clearResults() {
+    this.setState({
+      results: {
+        data: [],
+        meta: null,
+        pagination: null,
       }
     });
   }

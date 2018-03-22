@@ -9,7 +9,6 @@ class SearchInput extends Component {
   }
   handleChange(e) {
     const query = e.target.value;
-    if (!query) return; // TODO clear results
     this.debouncedSubmit(query);
   }
   handleSubmit(query) {
