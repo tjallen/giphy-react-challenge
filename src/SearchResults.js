@@ -11,7 +11,9 @@ class SearchResults extends Component {
         <ul>
           {results.map(res =>
             <Gif
+              id={res.id}
               key={res.id}
+              onGifClick={this.props.onGifClick}
               src={res.images.fixed_height.url}
               title={res.title}
             />

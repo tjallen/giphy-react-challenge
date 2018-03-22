@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Gif = ({ id, src, title, onGifClick }) => (
-  <li><img src={src} onClick={onGifClick} alt={title} /></li>
+  <li><img src={src} onClick={() => onGifClick(id)} alt={title} /></li>
 );
 
 export default Gif;
