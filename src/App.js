@@ -25,9 +25,6 @@ class App extends Component {
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
   }
-  componentDidMount() {
-    this.apiCall('maru')
-  }
   apiCall(query, offset = 0, limit = 10) {
     console.log('api call', query, offset, limit)
     if (!query) {
